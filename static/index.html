@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Live Location Sharing</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+
+<div id="app">
+
+  <!-- ============================================================ -->
+  <!-- STEP 0 — Create / open a room                                -->
+  <!-- ============================================================ -->
+  <section id="screen-home" class="screen">
+    <div class="card">
+      <h1>📍 Live Location</h1>
+      <p class="lead">Share your real-time location with family using one simple link.</p>
+
+      <button id="btn-create" class="btn btn-primary btn-xl">
+        🔗 Create a Sharing Link
+      </button>
+
+      <div id="created-link" class="hidden">
+        <p class="label">Send this link to your family:</p>
+        <div class="link-box" id="link-text"></div>
+        <button id="btn-copy" class="btn btn-secondary">📋 Copy Link</button>
+        <a id="btn-open-own" class="btn btn-outline" href="#">▶ Open it myself</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- STEP 1 — Ask to enable location                              -->
+  <!-- ============================================================ -->
+  <section id="screen-permission" class="screen hidden">
+    <div class="card">
+      <h1>📍 First, allow Location</h1>
+      <p class="lead">To share or see live location, this app needs permission to use your phone&rsquo;s GPS.</p>
+
+      <div class="permission-illustration">🛰️</div>
+
+      <button id="btn-allow" class="btn btn-primary btn-xl">
+        ✅  Turn ON Location
+      </button>
+
+      <div id="permission-error" class="error-box hidden">
+        <strong>Location is OFF.</strong><br/>
+        Please tap <em>Allow</em> when your browser asks.<br/>
+        <small>If you tapped <em>Block</em>, open your phone&rsquo;s
+        <b>Settings &rarr; Apps &rarr; Browser &rarr; Permissions &rarr; Location</b>
+        and turn it on, then reload this page.</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- STEP 2 — Choose  SEND  or  GET                               -->
+  <!-- ============================================================ -->
+  <section id="screen-choose" class="screen hidden">
+    <div class="card">
+      <h1>What would you like to do?</h1>
+
+      <button id="btn-send" class="btn btn-send btn-xl">
+        📤&ensp;SEND<br/><span class="btn-sub">share my location</span>
+      </button>
+
+      <button id="btn-get" class="btn btn-get btn-xl">
+        📥&ensp;GET<br/><span class="btn-sub">see family&rsquo;s location</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- STEP 3a — SEND mode                                          -->
+  <!-- ============================================================ -->
+  <section id="screen-send" class="screen hidden">
+    <div class="card wide">
+      <div class="status-bar sending">
+        <span class="pulse"></span> Broadcasting your live location
+      </div>
+
+      <h2>Your location</h2>
+      <div id="map-send" class="map-frame"></div>
+
+      <p id="send-coords" class="coords"></p>
+      <p id="send-time" class="coords dim"></p>
+
+      <button id="btn-stop-send" class="btn btn-danger btn-xl">
+        ⏹&ensp;STOP Sharing
+      </button>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- STEP 3b — GET mode                                           -->
+  <!-- ============================================================ -->
+  <section id="screen-get" class="screen hidden">
+    <div class="card wide">
+      <div class="status-bar watching">
+        👁 Watching family&rsquo;s live location
+      </div>
+
+      <h2>Family location</h2>
+      <div id="map-get" class="map-frame"></div>
+
+      <p id="get-coords" class="coords"></p>
+      <p id="get-time" class="coords dim"></p>
+
+      <div id="get-waiting" class="waiting">
+        <span class="spinner"></span>
+        Waiting for family to start sharing&hellip;
+      </div>
+
+      <button id="btn-stop-get" class="btn btn-danger btn-xl">
+        ⏹&ensp;STOP Watching
+      </button>
+    </div>
+  </section>
+
+</div>
+
+<script src="/app.js"></script>
+</body>
+</html>
